@@ -1,0 +1,44 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 25
+    buildToolsVersion "25.0.3"
+    defaultConfig {
+        applicationId "cn.nodemedia.demo"
+        minSdkVersion 15
+        targetSdkVersion 25
+        versionCode 237
+        versionName "2.3.7"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    repositories {
+        flatDir {
+            dirs 'libs'
+        }
+    }
+
+    //取消下面的注释，排除多余架构，只保留armv7-a，可大大节省APK大小
+//    packagingOptions {
+//        exclude 'lib/x86/libNodeMediaClient.so'
+//        exclude 'lib/arm64-v8a/libNodeMediaClient.so'
+//        exclude 'lib/x86_64/libNodeMediaClient.so'
+//    }
+}
+
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile(name: 'NodeMediaClient-2.3.7', ext: 'aar')
+    compile 'com.android.support:appcompat-v7:25.3.1'
+    compile 'com.android.support:design:25.3.1'
+    compile 'com.anthonycr.grant:permissions:1.0'
+    compile 'com.github.ashqal:MD360Player4Android:2.5.0'
+    compile 'com.android.support.constraint:constraint-layout:1.0.1'
+}
